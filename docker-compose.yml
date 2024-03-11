@@ -1,0 +1,31 @@
+version: "3.9"  # Adjust if using a different Docker version
+
+services:
+  ubuntu:
+    image: ubuntu:latest
+    volumes:
+      - ubuntu_data:/data  # Optional persistent data volume for Ubuntu
+    ports:
+      - "2222:22"  # Map container port 2222 to host port 2222 for SSH access
+    command: ["/usr/sbin/sshd", "-D"]  # Start SSH daemon in foreground
+
+  fedora:
+    image: fedora:latest
+    volumes:
+      - fedora_data:/data  # Optional persistent data volume for Fedora
+    ports:
+      - "2223:22"  # Map container port 2223 to host port 2223 for SSH access
+    command: ["/usr/sbin/sshd", "-D"]  # Start SSH daemon in foreground
+
+  debian:
+    image: debian:latest
+    volumes:
+      - debian_data:/data  # Optional persistent data volume for Debian
+    ports:
+      - "2224:22"  # Map container port 2224 to host port 2224 for SSH access
+    command: ["/usr/sbin/sshd", "-D"]  # Start SSH daemon in foreground
+
+volumes:
+  ubuntu_data: {}  # Optional persistent data volume for Ubuntu
+  fedora_data: {}  # Optional persistent data volume for Fedora
+  debian_data: {}  # Optional persistent data volume for Debian
